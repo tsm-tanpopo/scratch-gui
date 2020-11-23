@@ -6,10 +6,14 @@
     flex-grow: 1;
     position: relative;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* DEL BY GL 20201029 START
     margin-right: calc($space / 2);
+    DEL BY GL 20201029 END */
     background-color: $ui-secondary;
+    /* DEL BY GL 20201029 START
     border-top-right-radius: $space;
     border-top-left-radius: $space;
+    DEL BY GL 20201029 END */
     border-color: $ui-black-transparent;
     border-width: 1px;
     border-style: solid;

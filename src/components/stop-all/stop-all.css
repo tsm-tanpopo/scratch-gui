@@ -9,14 +9,41 @@
     cursor: pointer;
 }
 
+/* DEL BY GL 20201029 START
 .stop-all:hover {
     background-color: $motion-light-transparent;
 }
+DEL BY GL 20201029 END */
 
 .stop-all {
     opacity: 0.5;
 }
 
+/* DEL BY GL 20201029 START
 .stop-all.is-active {
     opacity: 1;
 }
+DEL BY GL 20201029 END */
+
+/* ADD BY GL 20201029 START */
+.stop-all-button {
+    display: block;
+    border: 1px solid $ui-black-transparent;
+    border-radius: calc(0.5rem / 2);
+    /* width: calc(2rem + 2px); */
+    height: calc(2rem + 2px);
+    background: $ui-white;
+    /* padding: 0.375rem; */
+    user-select: none;
+    cursor: pointer;
+    margin-left: 0.5em;
+}
+
+.stop-all-label {
+    float: right;
+    display: inline;
+    vertical-align: middle;
+    font-size: 0.75rem;
+    line-height: calc(2rem + 2px);
+}
+/* ADD BY GL 20201029 END */

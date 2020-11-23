@@ -11,18 +11,24 @@ import VM from 'scratch-vm';
 
 import Box from '../box/box.jsx';
 import Button from '../button/button.jsx';
+/* DEL BY GL 20201029 START
 import CommunityButton from './community-button.jsx';
 import ShareButton from './share-button.jsx';
+DEL BY GL 20201029 END */
 import {ComingSoonTooltip} from '../coming-soon/coming-soon.jsx';
 import Divider from '../divider/divider.jsx';
 import LanguageSelector from '../../containers/language-selector.jsx';
 import SaveStatus from './save-status.jsx';
 import SBFileUploader from '../../containers/sb-file-uploader.jsx';
+/* DEL BY GL 20201029 START
 import ProjectWatcher from '../../containers/project-watcher.jsx';
+DEL BY GL 20201029 END */
 import MenuBarMenu from './menu-bar-menu.jsx';
 import {MenuItem, MenuSection} from '../menu/menu.jsx';
+/* DEL BY GL 20201029 START
 import ProjectTitleInput from './project-title-input.jsx';
 import AuthorInfo from './author-info.jsx';
+DEL BY GL 20201029 END */
 import AccountNav from '../../containers/account-nav.jsx';
 import LoginDropdown from './login-dropdown.jsx';
 import SB3Downloader from '../../containers/sb3-downloader.jsx';
@@ -63,15 +69,21 @@ import collectMetadata from '../../lib/collect-metadata';
 
 import styles from './menu-bar.css';
 
+/* DEL BY GL 20201029 START
 import helpIcon from '../../lib/assets/icon--tutorials.svg';
+DEL BY GL 20201029 END */
 import mystuffIcon from './icon--mystuff.png';
 import profileIcon from './icon--profile.png';
+/* DEL BY GL 20201029 START
 import remixIcon from './icon--remix.svg';
+DEL BY GL 20201029 END */
 import dropdownCaret from './dropdown-caret.svg';
 import languageIcon from '../language-selector/language-icon.svg';
 import aboutIcon from './icon--about.svg';
 
-import scratchLogo from './scratch-logo.svg';
+/* MOD BY GL 20201029 START */
+import scratchLogo from './codekite-logo.svg';
+/* MOD BY GL 20201029 END */
 
 import sharedMessages from '../../lib/shared-messages';
 
@@ -312,6 +324,7 @@ class MenuBar extends React.Component {
                 id="gui.menuBar.new"
             />
         );
+        /* DEL BY GL 20201029 START
         const remixButton = (
             <Button
                 className={classNames(
@@ -325,6 +338,7 @@ class MenuBar extends React.Component {
                 {remixMessage}
             </Button>
         );
+        DEL BY GL 20201029 END */
         // Show the About button only if we have a handler for it (like in the desktop app)
         const aboutButton = this.props.onClickAbout ? <AboutButton onClick={this.props.onClickAbout} /> : null;
         return (
@@ -347,6 +361,7 @@ class MenuBar extends React.Component {
                                 onClick={this.props.onClickLogo}
                             />
                         </div>
+                        {/* DEL BY GL 20201029 START
                         {(this.props.canChangeLanguage) && (<div
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
                         >
@@ -362,6 +377,7 @@ class MenuBar extends React.Component {
                             </div>
                             <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />
                         </div>)}
+                        DEL BY GL 20201029 END */}
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
@@ -490,6 +506,7 @@ class MenuBar extends React.Component {
                         </div>
                     </div>
                     <Divider className={classNames(styles.divider)} />
+                    {/* DEL BY GL 20201029 START
                     <div
                         aria-label={this.props.intl.formatMessage(ariaMessages.tutorials)}
                         className={classNames(styles.menuBarItem, styles.hoverable)}
@@ -531,11 +548,11 @@ class MenuBar extends React.Component {
                                             <ShareButton
                                                 className={styles.menuBarButton}
                                                 isShared={this.props.isShared}
-                                                /* eslint-disable react/jsx-no-bind */
+                                                // eslint-disable react/jsx-no-bind
                                                 onClick={() => {
                                                     this.handleClickShare(waitForUpdate);
                                                 }}
-                                                /* eslint-enable react/jsx-no-bind */
+                                                // eslint-enable react/jsx-no-bind
                                             />
                                         )
                                     }
@@ -558,11 +575,11 @@ class MenuBar extends React.Component {
                                         waitForUpdate => (
                                             <CommunityButton
                                                 className={styles.menuBarButton}
-                                                /* eslint-disable react/jsx-no-bind */
+                                                // eslint-disable react/jsx-no-bind
                                                 onClick={() => {
                                                     this.handleClickSeeCommunity(waitForUpdate);
                                                 }}
-                                                /* eslint-enable react/jsx-no-bind */
+                                                // eslint-enable react/jsx-no-bind
                                             />
                                         )
                                     }
@@ -574,6 +591,7 @@ class MenuBar extends React.Component {
                             </MenuBarItemTooltip>
                         ) : [])}
                     </div>
+                    DEL BY GL 20201029 END */}
                 </div>
 
                 {/* show the proper UI in the account menu, given whether the user is
@@ -662,6 +680,7 @@ class MenuBar extends React.Component {
                         <React.Fragment>
                             {this.props.showComingSoon ? (
                                 <React.Fragment>
+                                    {/* DEL BY GL 20201029 START
                                     <MenuBarItemTooltip id="mystuff">
                                         <div
                                             className={classNames(
@@ -700,6 +719,7 @@ class MenuBar extends React.Component {
                                             />
                                         </div>
                                     </MenuBarItemTooltip>
+                                    DEL BY GL 20201029 END */}
                                 </React.Fragment>
                             ) : []}
                         </React.Fragment>
@@ -714,14 +734,18 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
     accountMenuOpen: PropTypes.bool,
+    /* DEL BY GL 20201029 START
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    DEL BY GL 20201029 END */
     autoUpdateProject: PropTypes.func,
     canChangeLanguage: PropTypes.bool,
     canCreateCopy: PropTypes.bool,
     canCreateNew: PropTypes.bool,
+    /* DEL BY GL 20201029 START
     canEditTitle: PropTypes.bool,
+    DEL BY GL 20201029 END */
     canManageFiles: PropTypes.bool,
     canRemix: PropTypes.bool,
     canSave: PropTypes.bool,
@@ -729,13 +753,17 @@ MenuBar.propTypes = {
     className: PropTypes.string,
     confirmReadyToReplaceProject: PropTypes.func,
     editMenuOpen: PropTypes.bool,
+    /* DEL BY GL 20201029 START
     enableCommunity: PropTypes.bool,
+    DEL BY GL 20201029 END */
     fileMenuOpen: PropTypes.bool,
     intl: intlShape,
     isRtl: PropTypes.bool,
     isShared: PropTypes.bool,
+    /* DEL BY GL 20201029 START
     isShowingProject: PropTypes.bool,
     isUpdating: PropTypes.bool,
+    DEL BY GL 20201029 END */
     languageMenuOpen: PropTypes.bool,
     locale: PropTypes.string.isRequired,
     loginMenuOpen: PropTypes.bool,
@@ -753,16 +781,24 @@ MenuBar.propTypes = {
     onClickSaveAsCopy: PropTypes.func,
     onLogOut: PropTypes.func,
     onOpenRegistration: PropTypes.func,
+    /* DEL BY GL 20201029 START
     onOpenTipLibrary: PropTypes.func,
+    DEL BY GL 20201029 END */
     onProjectTelemetryEvent: PropTypes.func,
     onRequestCloseAccount: PropTypes.func,
     onRequestCloseEdit: PropTypes.func,
     onRequestCloseFile: PropTypes.func,
+    /* DEL BY GL 20201029 START
     onRequestCloseLanguage: PropTypes.func,
+    DEL BY GL 20201029 END */
     onRequestCloseLogin: PropTypes.func,
+    /* DEL BY GL 20201029 START
     onSeeCommunity: PropTypes.func,
+    DEL BY GL 20201029 END */
     onShare: PropTypes.func,
+    /* DEL BY GL 20201029 START
     onToggleLoginOpen: PropTypes.func,
+    DEL BY GL 20201029 END */
     projectTitle: PropTypes.string,
     renderLogin: PropTypes.func,
     sessionExists: PropTypes.bool,

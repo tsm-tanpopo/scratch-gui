@@ -1,4 +1,6 @@
+/* DEL BY GL 20201029 START
 import classNames from 'classnames';
+DEL BY GL 20201029 END */
 import {defineMessages, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,8 +14,10 @@ import {getStageDimensions} from '../../lib/screen-utils';
 import {STAGE_SIZE_MODES} from '../../lib/layout-constants';
 
 import fullScreenIcon from './icon--fullscreen.svg';
+/* DEL BY GL 20201029 START
 import largeStageIcon from './icon--large-stage.svg';
 import smallStageIcon from './icon--small-stage.svg';
+DEL BY GL 20201029 END */
 import unFullScreenIcon from './icon--unfullscreen.svg';
 
 import scratchLogo from '../menu-bar/scratch-logo.svg';
@@ -52,12 +56,16 @@ const StageHeaderComponent = function (props) {
         isFullScreen,
         isPlayerOnly,
         onKeyPress,
+        /* DEL BY GL 20201029 START
         onSetStageLarge,
         onSetStageSmall,
+        DEL BY GL 20201029 END */
         onSetStageFull,
         onSetStageUnFull,
         showBranding,
+        /* DEL BY GL 20201029 START
         stageSizeMode,
+        DEL BY GL 20201029 END */
         vm
     } = props;
 
@@ -109,42 +117,45 @@ const StageHeaderComponent = function (props) {
             isPlayerOnly ? (
                 []
             ) : (
-                <div className={styles.stageSizeToggleGroup}>
-                    <div>
-                        <Button
-                            className={classNames(
-                                styles.stageButton,
-                                styles.stageButtonFirst,
-                                (stageSizeMode === STAGE_SIZE_MODES.small) ? null : styles.stageButtonToggledOff
-                            )}
-                            onClick={onSetStageSmall}
-                        >
-                            <img
-                                alt={props.intl.formatMessage(messages.smallStageSizeMessage)}
-                                className={styles.stageButtonIcon}
-                                draggable={false}
-                                src={smallStageIcon}
-                            />
-                        </Button>
-                    </div>
-                    <div>
-                        <Button
-                            className={classNames(
-                                styles.stageButton,
-                                styles.stageButtonLast,
-                                (stageSizeMode === STAGE_SIZE_MODES.large) ? null : styles.stageButtonToggledOff
-                            )}
-                            onClick={onSetStageLarge}
-                        >
-                            <img
-                                alt={props.intl.formatMessage(messages.largeStageSizeMessage)}
-                                className={styles.stageButtonIcon}
-                                draggable={false}
-                                src={largeStageIcon}
-                            />
-                        </Button>
-                    </div>
-                </div>
+                /* MOD BY GL 20201029 START */
+                []
+                // <div className={styles.stageSizeToggleGroup}>
+                //     <div>
+                //         <Button
+                //             className={classNames(
+                //                 styles.stageButton,
+                //                 styles.stageButtonFirst,
+                //                 (stageSizeMode === STAGE_SIZE_MODES.small) ? null : styles.stageButtonToggledOff
+                //             )}
+                //             onClick={onSetStageSmall}
+                //         >
+                //             <img
+                //                 alt={props.intl.formatMessage(messages.smallStageSizeMessage)}
+                //                 className={styles.stageButtonIcon}
+                //                 draggable={false}
+                //                 src={smallStageIcon}
+                //             />
+                //         </Button>
+                //     </div>
+                //     <div>
+                //         <Button
+                //             className={classNames(
+                //                 styles.stageButton,
+                //                 styles.stageButtonLast,
+                //                 (stageSizeMode === STAGE_SIZE_MODES.large) ? null : styles.stageButtonToggledOff
+                //             )}
+                //             onClick={onSetStageLarge}
+                //         >
+                //             <img
+                //                 alt={props.intl.formatMessage(messages.largeStageSizeMessage)}
+                //                 className={styles.stageButtonIcon}
+                //                 draggable={false}
+                //                 src={largeStageIcon}
+                //             />
+                //         </Button>
+                //     </div>
+                // </div>
+                /* MOD BY GL 20201029 END */
             );
         header = (
             <Box className={styles.stageHeaderWrapper}>

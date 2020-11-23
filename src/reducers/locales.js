@@ -11,9 +11,11 @@ const SELECT_LOCALE = 'scratch-gui/locales/SELECT_LOCALE';
 
 const initialState = {
     isRtl: false,
-    locale: 'en',
+    /* MOD BY GL 20201029 START */
+    locale: 'zh-cn',
     messagesByLocale: editorMessages,
-    messages: editorMessages.en
+    messages: editorMessages["zh-cn"]
+    /* MOD BY GL 20201029 END */
 };
 
 const reducer = function (state, action) {

@@ -6,7 +6,10 @@
     justify-content: flex-start;
     align-content: flex-start;
     align-items: flex-start;
-    background: $ui-secondary;
+    /* MOD BY GL 20201029 START */
+    /* background: $ui-secondary; */
+    background: $motion-scroll-light-primary;
+    /* MOD BY GL 20201029 END */
     flex-grow: 1;
     flex-wrap: wrap;
     overflow-y: auto;
@@ -25,7 +28,10 @@
     justify-content: flex-start;
     align-items: center;
     height: calc($library-filter-bar-height + 2rem); /* padding */
-    background-color: $motion-transparent;
+    /* MOD BY GL 20201029 START */
+    /* background-color: $motion-transparent; */
+    background-color: $motion-scroll-primary;
+    /* MOD BY GL 20201029 END */
     padding: 0 1rem;
     font-size: .875rem;
 }

@@ -10,6 +10,7 @@
     font-size: 0.85rem;
 }
 
+/* DEL BY GL 20201029 START
 [dir="ltr"] .wrapper {
     border-top-right-radius: $space;
     border-bottom-right-radius: $space;
@@ -19,6 +20,7 @@
     border-top-left-radius: $space;
     border-bottom-left-radius: $space;
 }
+DEL BY GL 20201029 END */
 
 .detail-area {
     display: flex;

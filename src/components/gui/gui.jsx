@@ -22,7 +22,9 @@ import CostumeLibrary from '../../containers/costume-library.jsx';
 import BackdropLibrary from '../../containers/backdrop-library.jsx';
 import Watermark from '../../containers/watermark.jsx';
 
+/* DEL BY GL 20201029 START
 import Backpack from '../../containers/backpack.jsx';
+DEL BY GL 20201029 END */
 import WebGlModal from '../../containers/webgl-modal.jsx';
 import TipsLibrary from '../../containers/tips-library.jsx';
 import Cards from '../../containers/cards.jsx';
@@ -62,7 +64,9 @@ const GUIComponent = props => {
         authorUsername,
         basePath,
         backdropLibraryVisible,
+        /* DEL BY GL 20201029 START
         backpackHost,
+        DEL BY GL 20201029 END */
         backpackVisible,
         blocksTabVisible,
         cardsVisible,
@@ -305,6 +309,7 @@ const GUIComponent = props => {
                                             vm={vm}
                                         />
                                     </Box>
+                                    {/* DEL BY GL 20201029 START
                                     <Box className={styles.extensionButtonContainer}>
                                         <button
                                             className={styles.extensionButton}
@@ -318,6 +323,7 @@ const GUIComponent = props => {
                                             />
                                         </button>
                                     </Box>
+                                    DEL BY GL 20201029 END */}
                                     <Box className={styles.watermark}>
                                         <Watermark />
                                     </Box>
@@ -330,7 +336,10 @@ const GUIComponent = props => {
                                 </TabPanel>
                             </Tabs>
                             {backpackVisible ? (
-                                <Backpack host={backpackHost} />
+                                /* MOD BY GL 20201029 START */
+                                // <Backpack host={backpackHost} />
+                                null
+                                /* MOD BY GL 20201029 END */
                             ) : null}
                         </Box>
 

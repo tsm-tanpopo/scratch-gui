@@ -1,0 +1,22 @@
+<svg width="110" height="35" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <filter height="200%" width="200%" y="-50%" x="-50%" id="svg_1_blur">
+   <feGaussianBlur stdDeviation="0" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="37" width="112" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-style="italic" filter="url(#svg_1_blur)" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_1" y="25.953125" x="1.779572" stroke-width="0" stroke="#000" fill="#FFA9A2">风</text>
+  <text font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_2" y="25.953125" x="26.279572" stroke-width="0" stroke="#000" fill="#FFFA8D">筝</text>
+  <text font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_3" y="25.953125" x="52.983878" stroke-width="0" stroke="#000" fill="#A0D58A">编</text>
+  <text font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_4" y="25.953125" x="79.61829" stroke-width="0" stroke="#000" fill="#84D3DB">程</text>
+ </g>
+</svg>

@@ -74,7 +74,9 @@
     height: 80%;
     margin-bottom: 0;
 
+    /* DEL BY GL 20201029 START
     border-radius: 1rem 1rem 0 0;
+    DEL BY GL 20201029 END */
     border: 1px solid $ui-black-transparent;
 
     padding: 0.125rem 1.25rem 0;
@@ -205,8 +207,10 @@
     display: flex;
     flex-direction: column;
     /* pad entire wrapper to the left and right; allow children to fill width */
+    /* DEL BY GL 20201019 START
     padding-left: $space;
     padding-right: $space;
+    DEL BY GL 20201019 END */
 
     /* this will only ever be as wide as the stage */
     flex-basis: 0;
@@ -217,7 +221,9 @@
     flex-grow: 1;
     flex-basis: 0;
 
+    /* DEL BY GL 20201019 START
     padding-top: $space;
+    DEL BY GL 20201019 END */
     min-height: 0; /* this makes it work in Firefox */
 
     /*
