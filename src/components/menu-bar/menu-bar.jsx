@@ -19,10 +19,9 @@ import {ComingSoonTooltip} from '../coming-soon/coming-soon.jsx';
 import Divider from '../divider/divider.jsx';
 import LanguageSelector from '../../containers/language-selector.jsx';
 import SaveStatus from './save-status.jsx';
+/* DEL BY GL 20210323 START
 import SBFileUploader from '../../containers/sb-file-uploader.jsx';
-/* DEL BY GL 20201029 START
-import ProjectWatcher from '../../containers/project-watcher.jsx';
-DEL BY GL 20201029 END */
+DEL BY GL 20210323 END */
 import MenuBarMenu from './menu-bar-menu.jsx';
 import {MenuItem, MenuSection} from '../menu/menu.jsx';
 /* DEL BY GL 20201029 START
@@ -48,6 +47,9 @@ import {
     saveProjectAsCopy
 } from '../../reducers/project-state';
 import {
+    openAboutMenu,
+    closeAboutMenu,
+    aboutMenuOpen,
     openAccountMenu,
     closeAccountMenu,
     accountMenuOpen,
@@ -295,6 +297,56 @@ class MenuBar extends React.Component {
         }
         }
     }
+    buildAboutMenu (onClickAbout) {
+        if (!onClickAbout) {
+            // hide the button
+            return null;
+        }
+        if (typeof onClickAbout === 'function') {
+            // make a button which calls a function
+            return <AboutButton onClick={onClickAbout} />;
+        }
+        // assume it's an array of objects
+        // each item must have a 'title' FormattedMessage and a 'handleClick' function
+        // generate a menu with items for each object in the array
+        return (
+            <div
+                className={classNames(styles.menuBarItem, styles.hoverable, {
+                    [styles.active]: this.props.aboutMenuOpen
+                })}
+                onMouseUp={this.props.onRequestOpenAbout}
+            >
+                <img
+                    className={styles.aboutIcon}
+                    src={aboutIcon}
+                />
+                <MenuBarMenu
+                    className={classNames(styles.menuBarMenu)}
+                    open={this.props.aboutMenuOpen}
+                    place={this.props.isRtl ? 'right' : 'left'}
+                    onRequestClose={this.props.onRequestCloseAbout}
+                >
+                    {
+                        onClickAbout.map(itemProps => (
+                            <MenuItem
+                                key={itemProps.title}
+                                isRtl={this.props.isRtl}
+                                onClick={this.wrapAboutMenuCallback(itemProps.onClick)}
+                            >
+                                {itemProps.title}
+                            </MenuItem>
+                        ))
+                    }
+                </MenuBarMenu>
+            </div>
+        );
+    }
+    wrapAboutMenuCallback (callback) {
+        return () => {
+            callback();
+            this.props.onRequestCloseAbout();
+        };
+    }
     render () {
         const saveNowMessage = (
             <FormattedMessage
@@ -340,7 +392,7 @@ class MenuBar extends React.Component {
         );
         DEL BY GL 20201029 END */
         // Show the About button only if we have a handler for it (like in the desktop app)
-        const aboutButton = this.props.onClickAbout ? <AboutButton onClick={this.props.onClickAbout} /> : null;
+        const aboutButton = this.buildAboutMenu(this.props.onClickAbout);
         return (
             <Box
                 className={classNames(
@@ -424,22 +476,11 @@ class MenuBar extends React.Component {
                                         </MenuSection>
                                     )}
                                     <MenuSection>
-                                        <SBFileUploader
-                                            canSave={this.props.canSave}
-                                            userOwnsProject={this.props.userOwnsProject}
+                                        <MenuItem
+                                            onClick={this.props.onStartSelectingFileUpload}
                                         >
-                                            {(className, renderFileInput, handleLoadProject) => (
-                                                <MenuItem
-                                                    className={className}
-                                                    onClick={handleLoadProject}
-                                                >
-                                                    {/* eslint-disable max-len */}
-                                                    {this.props.intl.formatMessage(sharedMessages.loadFromComputerTitle)}
-                                                    {/* eslint-enable max-len */}
-                                                    {renderFileInput()}
-                                                </MenuItem>
-                                            )}
-                                        </SBFileUploader>
+                                            {this.props.intl.formatMessage(sharedMessages.loadFromComputerTitle)}
+                                        </MenuItem>
                                         <SB3Downloader>{(className, downloadProjectCallback) => (
                                             <MenuItem
                                                 className={className}
@@ -733,6 +774,7 @@ class MenuBar extends React.Component {
 }
 
 MenuBar.propTypes = {
+    aboutMenuOpen: PropTypes.bool,
     accountMenuOpen: PropTypes.bool,
     /* DEL BY GL 20201029 START
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -768,7 +810,15 @@ MenuBar.propTypes = {
     locale: PropTypes.string.isRequired,
     loginMenuOpen: PropTypes.bool,
     logo: PropTypes.string,
-    onClickAbout: PropTypes.func,
+    onClickAbout: PropTypes.oneOfType([
+        PropTypes.func, // button mode: call this callback when the About button is clicked
+        PropTypes.arrayOf( // menu mode: list of items in the About menu
+            PropTypes.shape({
+                title: PropTypes.string, // text for the menu item
+                onClick: PropTypes.func // call this callback when the menu item is clicked
+            })
+        )
+    ]),
     onClickAccount: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
@@ -785,6 +835,8 @@ MenuBar.propTypes = {
     onOpenTipLibrary: PropTypes.func,
     DEL BY GL 20201029 END */
     onProjectTelemetryEvent: PropTypes.func,
+    onRequestOpenAbout: PropTypes.func,
+    onRequestCloseAbout: PropTypes.func,
     onRequestCloseAccount: PropTypes.func,
     onRequestCloseEdit: PropTypes.func,
     onRequestCloseFile: PropTypes.func,
@@ -796,6 +848,7 @@ MenuBar.propTypes = {
     onSeeCommunity: PropTypes.func,
     DEL BY GL 20201029 END */
     onShare: PropTypes.func,
+    onStartSelectingFileUpload: PropTypes.func,
     /* DEL BY GL 20201029 START
     onToggleLoginOpen: PropTypes.func,
     DEL BY GL 20201029 END */
@@ -818,6 +871,7 @@ const mapStateToProps = (state, ownProps) => {
     const loadingState = state.scratchGui.projectState.loadingState;
     const user = state.session && state.session.session && state.session.session.user;
     return {
+        aboutMenuOpen: aboutMenuOpen(state),
         accountMenuOpen: accountMenuOpen(state),
         fileMenuOpen: fileMenuOpen(state),
         editMenuOpen: editMenuOpen(state),
@@ -849,6 +903,8 @@ const mapDispatchToProps = dispatch => ({
     onRequestCloseLanguage: () => dispatch(closeLanguageMenu()),
     onClickLogin: () => dispatch(openLoginMenu()),
     onRequestCloseLogin: () => dispatch(closeLoginMenu()),
+    onRequestOpenAbout: () => dispatch(openAboutMenu()),
+    onRequestCloseAbout: () => dispatch(closeAboutMenu()),
     onClickNew: needSave => dispatch(requestNewProject(needSave)),
     onClickRemix: () => dispatch(remixProject()),
     onClickSave: () => dispatch(manualUpdateProject()),
